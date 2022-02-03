@@ -13,7 +13,7 @@ main{
     padding: 0px 116px 0px 116px;
 }
 
-section{
+.tabuleiro{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -29,17 +29,40 @@ h1{
     letter-spacing: -0.004em;
     color: #75B79E;
 }
-div{
+.card {
     width: 117px;
+    min-width: 117px;
     height: 146px;
+    position: relative;
+    margin: 34px;
+  }
+
+  .face {
+    width: 100%;
+    height: 100%;
     background: #A7E9AF;
-    border: 1px solid #99CEA8;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 34px;
-}
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all 0.5s;
+    transform-style: preserve-3d;
+  }
+
+  .backFace {
+    transform: rotateY(180deg);
+  }
+
+  .focus >.backFace {
+    transform: rotateY(0deg);
+  }
+
+  .focus > .frontFace {
+    transform: rotateY(-180deg);
+  }
+
 img{
     height: 100px;
     width: 100px;
