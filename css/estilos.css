@@ -36,6 +36,9 @@ h1{
     position: relative;
     margin: 34px;
   }
+  .card p{
+    display: none;
+  }
 
   .face {
     width: 100%;
