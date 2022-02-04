@@ -1,6 +1,6 @@
 let numeroCartas = 0, carta = [], cartas ="";
 let tabuleiro = document.querySelector(".tabuleiro");
-let gifs = [0,1,2,3,4,5,6,7], contadorGifs=0,primeiroNumero, primeiraCarta, segundaCarta, digaNaoProGlitch = true;
+let gifs = [0,1,2,3,4,5,6,7], contadorGifs=0,primeiroNumero, segundoNumero, primeiraCarta, segundaCarta, digaNaoProGlitch = true;
 
 
 perguntaCartas();
@@ -40,8 +40,13 @@ function focandoNaCarta(cartaFocada, numeracaoDaCarta){
             primeiraCarta = cartaFocada;
         }
         else{
+            segundoNumero = numeracaoDaCarta;
             segundaCarta = cartaFocada;
-            if(primeiroNumero!==numeracaoDaCarta){
+            if(primeiraCarta === segundaCarta){
+                segundaCarta=null;
+                segundoNumero=null;
+            }
+            if(primeiroNumero!==segundoNumero){
                 digaNaoProGlitch=false;
                 setTimeout(desvirandoCartas, 900);
                 setTimeout(evitarBug, 900);
