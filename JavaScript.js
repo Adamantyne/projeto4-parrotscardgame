@@ -1,6 +1,6 @@
 let numeroCartas = 0, carta = [], cartas ="";
 let tabuleiro = document.querySelector(".tabuleiro");
-let gifs = [0,1,2,3,4,5,6,7], contadorGifs=0,primeiroNumero, segundoNumero, primeiraCarta, segundaCarta, digaNaoProGlitch = true;
+let gifs = [0,1,2,3,4,5,6], contadorGifs=0,primeiroNumero, segundoNumero, primeiraCarta, segundaCarta, digaNaoProGlitch = true;
 
 
 perguntaCartas();
@@ -11,8 +11,8 @@ function perguntaCartas(){
     criandoCartas();
 }
 
-
 function criandoCartas(){
+    gifs.sort(embaralhandoCartas);
     for(let i=0; i < numeroCartas; i++){
         if(contadorGifs===numeroCartas/2){
             contadorGifs=0;
@@ -29,7 +29,12 @@ function criandoCartas(){
         `
         contadorGifs++;
     }
+    carta.sort(embaralhandoCartas);
     cartas = carta.join(' ')
+}
+
+function embaralhandoCartas() { 
+	return Math.random() - 0.5; 
 }
 
 function focandoNaCarta(cartaFocada, numeracaoDaCarta){
