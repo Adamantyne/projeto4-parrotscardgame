@@ -69,6 +69,10 @@ function focandoNaCarta(cartaFocada, numeracaoDaCarta){
                 else{
                     primeiraRemessa = undefined;
                     acertos++;
+                    primeiraCarta.removeAttribute("onclick");
+                    segundaCarta.removeAttribute("onclick");
+                    digaNaoProGlitch=false;
+                    setTimeout(evitarBug, 200);
                     if(acertos>=numeroCartas/2){
                     clearInterval(intervalo);
                     setTimeout(finalizarJogo, 500);
