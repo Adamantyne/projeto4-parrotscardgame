@@ -30,14 +30,6 @@ header{
   height: 100%;
   flex-direction: column;
 }
-main{
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-}
 h1{
   align-items: center;
   margin-top: var(--margemTopo);
@@ -46,6 +38,14 @@ h1{
   line-height: 66px;
   letter-spacing: -0.004em;
   color: #75B79E;
+}
+main{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 .tabuleiro{
   display: flex;

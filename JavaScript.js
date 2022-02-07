@@ -1,6 +1,6 @@
 let numeroCartas, carta = [], cartas ="";
 const tabuleiro = document.querySelector(".tabuleiro");
-let gifs = [0,1,2,3,4,5,6], contadorGifs=0,primeiroNumero, segundoNumero, primeiraCarta, segundaCarta, digaNaoProGlitch = true;
+let gifs = [0,1,2,3,4,5,6], contadorGifs=0,primeiraRemessa, segundaRemessa, primeiraCarta, segundaCarta, digaNaoProGlitch = true;
 let jogadas=0, tempo=0, acertos =0, intervalo=null;
 
 
@@ -19,12 +19,12 @@ function criandoCartas(){
             contadorGifs=0;
         }
         carta[i] = ` 
-        <article onclick="focandoNaCarta(this, ${gifs[contadorGifs]})" class="carta">
-            <div class="faceDaFrente face">
+        <article onclick="focandoNaCarta(this, ${gifs[contadorGifs]})" class="carta" data-identifier="card">
+            <div class="faceDaFrente face" data-identifier="back-face">
                 <img src="imagens/front.png" alt="Costas da carta">
             </div>
-            <div class="faceDeTras face">
-                <img src="imagens/${gifs[contadorGifs]}.gif" alt="Costas da carta">
+            <div class="faceDeTras face" data-identifier="front-face">
+                <img src="imagens/${gifs[contadorGifs]}.gif" alt="Face da carta">
             </div>
         </article>
         `
@@ -46,28 +46,28 @@ function focandoNaCarta(cartaFocada, numeracaoDaCarta){
     }
     if(digaNaoProGlitch == true){
         cartaFocada.classList.add("focus");
-        if(primeiroNumero == undefined){
-            primeiroNumero = numeracaoDaCarta;
+        if(primeiraRemessa == undefined){
+            primeiraRemessa = numeracaoDaCarta;
             primeiraCarta = cartaFocada;
             calculandoJogadas();
         }
         else{
-            segundoNumero = numeracaoDaCarta;
+            segundaRemessa = numeracaoDaCarta;
             segundaCarta = cartaFocada;
             if(primeiraCarta === segundaCarta){
                 segundaCarta=undefined;
-                segundoNumero=undefined;
+                segundaRemessa=undefined;
             }
             else{
                 calculandoJogadas();
-                if(primeiroNumero!==segundoNumero){
+                if(primeiraRemessa!==segundaRemessa){
                     digaNaoProGlitch=false;
                     setTimeout(desvirandoCartas, 1000);
                     setTimeout(evitarBug, 1000);
-                    primeiroNumero = undefined;
+                    primeiraRemessa = undefined;
                 }
                 else{
-                    primeiroNumero = undefined;
+                    primeiraRemessa = undefined;
                     acertos++;
                     if(acertos>=numeroCartas/2){
                     clearInterval(intervalo);
@@ -100,7 +100,7 @@ function atualizarCronometro(){
 }
 function finalizarJogo(){
     numeroCartas=undefined;
-    primeiroNumero=undefined, segundoNumero=undefined, primeiraCarta=undefined; segundaCarta=undefined;
+    primeiraRemessa=undefined, segundaRemessa=undefined, primeiraCarta=undefined; segundaCarta=undefined;
     alert(`Você ganhou em ${jogadas} jogadas / ${tempo} segundos!`);
     let jogarNovamente = prompt("Deseja jogar novamente ? \n digite 'sim' ou 'não'")
     if (jogarNovamente === "sim"){
